@@ -1,0 +1,11 @@
+name: bau
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pytest
+  - pytest-regressions
+  - pytest-cpp
+  - boost-cpp
+  - cmake
+  - clang-format
