@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: "0 5 * * 0" # Runs every Sunday at 05:00 UTC
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    name: Ubuntu Release
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - name: dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install g++-10
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: bau
+          environment-file: environment.yml
+      - name: build
+        env:
+          CXX: g++-10
+        run: |
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          make
+      - name: tests
+        run: |
+          pytest build/artifacts/
+
