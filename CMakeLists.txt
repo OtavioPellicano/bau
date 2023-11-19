@@ -28,7 +28,7 @@ add_subdirectory(src/bau/cpp)
 
 file(MAKE_DIRECTORY ${ARTIFACTS_DIR_CPP})
 
-add_executable(test_boost src/bau/cpp/_tests/test_dummy.cpp)
+add_executable(test_boost src/bau/cpp/_tests/test_mass.cpp)
 target_link_libraries(test_boost PRIVATE bau)
 
 add_custom_command(

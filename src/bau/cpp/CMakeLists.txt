@@ -1,8 +1,11 @@
 add_library(
     bau
 
-    src/Dummy.cpp
-    include/bau/Dummy.hpp
+    src/BaseUnit.cpp
+    src/CommonBaseUnit.cpp
+    src/MassBaseUnit.cpp
+    src/LengthBaseUnit.cpp
+
 )
 
 target_include_directories(bau PUBLIC
