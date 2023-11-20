@@ -13,4 +13,9 @@ std::string Meter::unit_str() const
     return "m";
 }
 
+std::string Meter::unit_str_full() const
+{
+    return "Meter";
+}
+
 } // namespace bau

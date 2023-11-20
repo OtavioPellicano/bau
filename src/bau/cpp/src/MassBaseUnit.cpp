@@ -13,6 +13,11 @@ std::string Kilogram::unit_str() const
     return "kg";
 }
 
+std::string Kilogram::unit_str_full() const
+{
+    return "Kilogram";
+}
+
 Pound::Pound(double value)
     : MassBaseUnit(value, 0.45359237)
 {
@@ -20,7 +25,12 @@ Pound::Pound(double value)
 
 std::string Pound::unit_str() const
 {
-    return "pound";
+    return "lb";
+}
+
+std::string Pound::unit_str_full() const
+{
+    return "Pound";
 }
 
 } // namespace bau

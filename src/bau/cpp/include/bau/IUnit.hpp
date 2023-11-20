@@ -21,6 +21,7 @@ class IUnit
     virtual double convert_to_si(double value) const = 0;
 
     virtual std::string unit_str() const = 0;
+    virtual std::string unit_str_full() const = 0;
 };
 } // namespace bau
 

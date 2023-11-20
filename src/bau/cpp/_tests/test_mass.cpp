@@ -10,9 +10,13 @@ BOOST_AUTO_TEST_CASE(test_unit_string)
     auto k = bau::Kilogram(0.45359237);
     auto m = bau::Meter(2);
 
-    BOOST_CHECK(p.unit_str() == "pound");
+    BOOST_CHECK(p.unit_str() == "lb");
     BOOST_CHECK(k.unit_str() == "kg");
     BOOST_CHECK(m.unit_str() == "m");
+
+    BOOST_CHECK(p.unit_str_full() == "Pound");
+    BOOST_CHECK(k.unit_str_full() == "Kilogram");
+    BOOST_CHECK(m.unit_str_full() == "Meter");
 }
 
 BOOST_AUTO_TEST_CASE(test_set_get_value)

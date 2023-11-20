@@ -18,6 +18,7 @@ class Kilogram : public MassBaseUnit
   public:
     Kilogram(double value);
     std::string unit_str() const final;
+    std::string unit_str_full() const final;
 };
 
 class Pound : public MassBaseUnit
@@ -25,6 +26,7 @@ class Pound : public MassBaseUnit
   public:
     Pound(double value);
     std::string unit_str() const final;
+    std::string unit_str_full() const final;
 };
 
 } // namespace bau
