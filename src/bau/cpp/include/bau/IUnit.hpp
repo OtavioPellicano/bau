@@ -7,6 +7,14 @@
 
 namespace bau
 {
+enum class Unit : unsigned
+{
+    // mass units
+    kg,
+    lb,
+    // length unit
+    m,
+};
 class IUnit
 {
   public:
@@ -20,6 +28,7 @@ class IUnit
     virtual double convert_from_si(double value_si) const = 0;
     virtual double convert_to_si(double value) const = 0;
 
+    virtual Unit unit() const = 0;
     virtual std::string unit_str() const = 0;
     virtual std::string unit_str_full() const = 0;
 };

@@ -4,7 +4,7 @@ namespace bau
 {
 
 Kilogram::Kilogram(double value)
-    : MassBaseUnit(value, 1.0)
+    : MassBaseUnit(value, 1.0, Unit::kg)
 {
 }
 
@@ -19,7 +19,7 @@ std::string Kilogram::unit_str_full() const
 }
 
 Pound::Pound(double value)
-    : MassBaseUnit(value, 0.45359237)
+    : MassBaseUnit(value, 0.45359237, Unit::lb)
 {
 }
 

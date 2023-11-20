@@ -14,7 +14,7 @@ class CommonBaseUnit : public BaseUnit
 {
   public:
     virtual ~CommonBaseUnit() = default;
-    CommonBaseUnit(double value, double conversion_factor);
+    CommonBaseUnit(double value, double conversion_factor, Unit unit);
 };
 
 } // namespace bau

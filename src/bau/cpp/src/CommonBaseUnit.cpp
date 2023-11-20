@@ -3,8 +3,8 @@
 namespace bau
 {
 
-CommonBaseUnit::CommonBaseUnit(double value, double conversion_factor)
-    : BaseUnit(value, conversion_factor)
+CommonBaseUnit::CommonBaseUnit(double value, double conversion_factor, Unit unit)
+    : BaseUnit(value, conversion_factor, unit)
 {
 }
 

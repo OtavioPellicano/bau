@@ -3,8 +3,9 @@
 namespace bau
 {
 
-BaseUnit::BaseUnit(double value, double conversion_factor)
+BaseUnit::BaseUnit(double value, double conversion_factor, Unit unit)
     : _conversion_factor(conversion_factor)
+    , _unit(unit)
 {
     this->set_value(value);
 }
@@ -32,6 +33,11 @@ double BaseUnit::convert_from_si(double value_si) const
 double BaseUnit::convert_to_si(double value) const
 {
     return value * _conversion_factor;
+}
+
+Unit BaseUnit::unit() const
+{
+    return _unit;
 }
 
 } // namespace bau

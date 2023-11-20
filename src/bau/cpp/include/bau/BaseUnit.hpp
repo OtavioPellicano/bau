@@ -13,7 +13,7 @@ class BaseUnit : public IUnit
     using IUnit::convert_to_si;
 
     virtual ~BaseUnit() = default;
-    BaseUnit(double value, double conversion_factor);
+    BaseUnit(double value, double conversion_factor, Unit unit);
 
     void set_value(double value) final;
 
@@ -23,11 +23,14 @@ class BaseUnit : public IUnit
     double convert_from_si(double value_si) const final;
     double convert_to_si(double value) const final;
 
+    Unit unit() const final;
+
   protected:
     const double _conversion_factor;
 
   private:
     double _value_si;
+    const Unit _unit;
 };
 } // namespace bau
 
