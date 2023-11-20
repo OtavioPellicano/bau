@@ -2,7 +2,6 @@ add_library(
     bau
 
     src/BaseUnit.cpp
-    src/CommonBaseUnit.cpp
     src/MassBaseUnit.cpp
     src/LengthBaseUnit.cpp
 

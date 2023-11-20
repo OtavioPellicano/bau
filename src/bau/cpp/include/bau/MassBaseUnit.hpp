@@ -1,16 +1,16 @@
 #ifndef MASSBASEUNIT_HPP
 #define MASSBASEUNIT_HPP
 
-#include "bau/CommonBaseUnit.hpp"
+#include "bau/BaseUnit.hpp"
 
 namespace bau
 {
 
-class MassBaseUnit : public CommonBaseUnit
+class MassBaseUnit : public BaseUnit
 {
   public:
     virtual ~MassBaseUnit() = default;
-    using CommonBaseUnit::CommonBaseUnit;
+    using BaseUnit::BaseUnit;
 };
 
 class Kilogram : public MassBaseUnit

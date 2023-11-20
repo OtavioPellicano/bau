@@ -1,16 +1,16 @@
 #ifndef LENGTHBASEUNIT_HPP
 #define LENGTHBASEUNIT_HPP
 
-#include "bau/CommonBaseUnit.hpp"
+#include "bau/BaseUnit.hpp"
 
 namespace bau
 {
 
-class LengthBaseUnit : public CommonBaseUnit
+class LengthBaseUnit : public BaseUnit
 {
   public:
     virtual ~LengthBaseUnit() = default;
-    using CommonBaseUnit::CommonBaseUnit;
+    using BaseUnit::BaseUnit;
 };
 
 class Meter : public LengthBaseUnit
