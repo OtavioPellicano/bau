@@ -17,8 +17,6 @@ class Meter : public LengthBaseUnit
 {
   public:
     Meter(double value);
-    std::string unit_str() const final;
-    std::string unit_str_full() const final;
 };
 
 } // namespace bau

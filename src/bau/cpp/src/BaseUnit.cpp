@@ -3,9 +3,12 @@
 namespace bau
 {
 
-BaseUnit::BaseUnit(double value, double conversion_factor, Unit unit)
+BaseUnit::BaseUnit(
+    double value, double conversion_factor, Unit unit, const std::string &unit_str, const std::string &unit_str_full)
     : _conversion_factor(conversion_factor)
     , _unit(unit)
+    , _unit_str(unit_str)
+    , _unit_str_full(unit_str_full)
 {
     this->set_value(value);
 }
@@ -38,6 +41,16 @@ double BaseUnit::convert_to_si(double value) const
 Unit BaseUnit::unit() const
 {
     return _unit;
+}
+
+std::string BaseUnit::unit_str() const
+{
+    return _unit_str;
+}
+
+std::string BaseUnit::unit_str_full() const
+{
+    return _unit_str_full;
 }
 
 } // namespace bau

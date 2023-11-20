@@ -4,18 +4,8 @@ namespace bau
 {
 
 Meter::Meter(double value)
-    : LengthBaseUnit(value, 1.0, Unit::m)
+    : LengthBaseUnit(value, 1.0, Unit::m, "m", "Meter")
 {
-}
-
-std::string Meter::unit_str() const
-{
-    return "m";
-}
-
-std::string Meter::unit_str_full() const
-{
-    return "Meter";
 }
 
 } // namespace bau
