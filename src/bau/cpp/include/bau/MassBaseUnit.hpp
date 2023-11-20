@@ -11,7 +11,6 @@ class MassBaseUnit : public CommonBaseUnit
   public:
     virtual ~MassBaseUnit() = default;
     using CommonBaseUnit::CommonBaseUnit;
-    using CommonBaseUnit::is_approx_equal;
 };
 
 class Kilogram : public MassBaseUnit

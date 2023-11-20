@@ -11,7 +11,6 @@ class LengthBaseUnit : public CommonBaseUnit
   public:
     virtual ~LengthBaseUnit() = default;
     using CommonBaseUnit::CommonBaseUnit;
-    using CommonBaseUnit::is_approx_equal;
 };
 
 class Meter : public LengthBaseUnit

@@ -35,25 +35,25 @@ BOOST_AUTO_TEST_CASE(test_arithmetic_operators)
     auto k = bau::Kilogram(0.45359237);
 
     // is_approx_equal_check
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(p, k));
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(k, p));
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(k, k));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(p, k));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(k, p));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(k, k));
 
     // negate_check
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(p, -(-p)));
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(p, -(-k)));
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(-p, -k));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(p, -(-p)));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(p, -(-k)));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(-p, -k));
 
     // plus_check
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(p + k, k + p));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(p + k, k + p));
 
     // minus_check
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(p - k, -(k - p)));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(p - k, -(k - p)));
 
     // multiplies_check
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(p * k, k * p));
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(5 * k, p * 5.));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(p * k, k * p));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(5 * k, p * 5.));
 
     // divides_check
-    BOOST_CHECK(bau::MassBaseUnit::is_approx_equal(2 * p / k, 1 / (p / k * 2)));
+    BOOST_CHECK(bau::common_functions::is_approx_equal(2 * p / k, 1 / (p / k * 2)));
 }
