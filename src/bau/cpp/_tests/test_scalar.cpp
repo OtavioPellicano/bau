@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_name_unit_type)
     BOOST_CHECK(bau::unit::Weight::name == "weight");
 }
 
-BOOST_AUTO_TEST_CASE(test_angle_traits, * utf::tolerance(tol))
+BOOST_AUTO_TEST_CASE(test_angle_traits, *utf::tolerance(tol))
 {
     BOOST_CHECK(bau::unit::angle::Radians<bau::power::none>::name == "radians");
     BOOST_CHECK(bau::unit::angle::Radians<bau::power::none>::symbol == "rad");
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(test_angle_traits, * utf::tolerance(tol))
     BOOST_TEST(bau::unit::angle::Gradians<bau::power::none>::formula_from_si(M_PI / 200.) == 1.);
 }
 
-BOOST_AUTO_TEST_CASE(test_length_traits, * utf::tolerance(tol))
+BOOST_AUTO_TEST_CASE(test_length_traits, *utf::tolerance(tol))
 {
     BOOST_CHECK(bau::unit::length::Meters<bau::power::none>::name == "meters");
     BOOST_CHECK(bau::unit::length::Meters<bau::power::none>::symbol == "m");
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE(test_length_traits, * utf::tolerance(tol))
     BOOST_TEST(bau::unit::length::Yards<bau::power::none>::formula_from_si(0.91440276) == 1.);
 }
 
-BOOST_AUTO_TEST_CASE(test_temperature_traits, * utf::tolerance(tol))
+BOOST_AUTO_TEST_CASE(test_temperature_traits, *utf::tolerance(tol))
 {
     BOOST_CHECK(bau::unit::temperature::Kelvin<bau::power::none>::name == "kelvin");
     BOOST_CHECK(bau::unit::temperature::Kelvin<bau::power::none>::symbol == "K");
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(test_temperature_traits, * utf::tolerance(tol))
     BOOST_TEST(bau::unit::temperature::Celsius<bau::power::none>::formula_from_si(274.15) == 1.);
 }
 
-BOOST_AUTO_TEST_CASE(test_weight_traits, * utf::tolerance(tol))
+BOOST_AUTO_TEST_CASE(test_weight_traits, *utf::tolerance(tol))
 {
     BOOST_CHECK(bau::unit::weight::Grams<bau::power::none>::name == "grams");
     BOOST_CHECK(bau::unit::weight::Grams<bau::power::none>::symbol == "g");
@@ -111,10 +111,9 @@ BOOST_AUTO_TEST_CASE(test_weight_traits, * utf::tolerance(tol))
     BOOST_CHECK(bau::unit::weight::Pounds<bau::power::none>::symbol == "lb");
     BOOST_TEST(bau::unit::weight::Pounds<bau::power::none>::formula_to_si(1.) == 0.45359291);
     BOOST_TEST(bau::unit::weight::Pounds<bau::power::none>::formula_from_si(0.45359291) == 1.);
-
 }
 
-BOOST_AUTO_TEST_CASE(test_scalar, * utf::tolerance(tol))
+BOOST_AUTO_TEST_CASE(test_scalar, *utf::tolerance(tol))
 {
     constexpr auto scalar_1 = bau::Scalar<bau::unit::length::Miles, bau::power::kilo>(1.);
     BOOST_TEST(scalar_1.value() == 1.);
@@ -160,11 +159,9 @@ BOOST_AUTO_TEST_CASE(test_scalar, * utf::tolerance(tol))
     BOOST_CHECK(scalar_4.symbol_power_factor() == bau::power::kilo::symbol);
     BOOST_CHECK(scalar_4.name_power_factor() == bau::power::kilo::name);
     BOOST_CHECK(scalar_4.value_power_factor() == bau::power::kilo::value);
-
 }
 
-
-BOOST_AUTO_TEST_CASE(test_arithmetic_operators, * utf::tolerance(tol))
+BOOST_AUTO_TEST_CASE(test_arithmetic_operators, *utf::tolerance(tol))
 {
     constexpr auto k = bau::Scalar<bau::unit::weight::Grams, bau::power::kilo>(1);
     constexpr auto p = bau::Scalar<bau::unit::weight::Pounds>(.45359237);
@@ -180,10 +177,8 @@ BOOST_AUTO_TEST_CASE(test_arithmetic_operators, * utf::tolerance(tol))
     constexpr auto kg_res_m = k - p;
     constexpr auto pounds_res_m = p - k;
 
-
     BOOST_TEST(kg_res_m.value<bau::unit::weight::Pounds>() == -pounds_res_m.value());
 
     constexpr auto kg_res_m_value = pounds_res_m.value<bau::unit::weight::Grams, bau::power::kilo>();
     BOOST_TEST(kg_res_m.value() == -kg_res_m_value);
-
 }

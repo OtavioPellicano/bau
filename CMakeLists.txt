@@ -25,6 +25,7 @@ add_definitions(-fPIC)
 add_definitions(-DBoost_NO_BOOST_CMAKE=ON)
 
 add_subdirectory(src/bau/cpp)
+set_target_properties(bau PROPERTIES LINKER_LANGUAGE CXX)
 
 file(MAKE_DIRECTORY ${ARTIFACTS_DIR_CPP})
 

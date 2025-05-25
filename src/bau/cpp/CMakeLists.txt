@@ -13,7 +13,6 @@ add_library(
 
 )
 
-set_target_properties(bau PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(bau PUBLIC
 $<INSTALL_INTERFACE:include>

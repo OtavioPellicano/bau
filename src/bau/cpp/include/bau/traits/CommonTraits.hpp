@@ -31,15 +31,23 @@ concept UnitTraitTHelper = requires {
     typename T<PowerTrait>::type; // Refers to UnitTrait specialization, e.g. Meters<PowerTrait>
     typename T<PowerTrait>::value_type; // @see PowerTraitT concept
 
-    { T<PowerTrait>::convert_to_si(std::declval<double>()) } -> std::same_as<double>;
-    { T<PowerTrait>::convert_from_si(std::declval<double>()) } -> std::same_as<double>;
+    {
+        T<PowerTrait>::convert_to_si(std::declval<double>())
+    } -> std::same_as<double>;
+    {
+        T<PowerTrait>::convert_from_si(std::declval<double>())
+    } -> std::same_as<double>;
 
     // Trait specialization parameters
     T<PowerTrait>::name; // The UnitTrait name, e.g. "meters"
     T<PowerTrait>::symbol; // The UnitTrait symbol, e.g. "m"
 
-    { T<PowerTrait>::formula_to_si(std::declval<double>()) } -> std::same_as<double>; // conversion formula  to SI (universal system of units)
-    { T<PowerTrait>::formula_from_si(std::declval<double>()) } -> std::same_as<double>; // conversion formula from SI (universal system of units)
+    {
+        T<PowerTrait>::formula_to_si(std::declval<double>())
+    } -> std::same_as<double>; // conversion formula  to SI (universal system of units)
+    {
+        T<PowerTrait>::formula_from_si(std::declval<double>())
+    } -> std::same_as<double>; // conversion formula from SI (universal system of units)
 };
 
 template <UnitTypeT UnitType, template <typename> typename UnitTrait, power::PowerTraitT PowerTrait>
