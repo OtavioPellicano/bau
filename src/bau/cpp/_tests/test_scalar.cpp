@@ -118,7 +118,8 @@ BOOST_AUTO_TEST_CASE(test_scalar, *utf::tolerance(tol))
     constexpr auto scalar_1 = bau::Scalar<bau::unit::length::Miles, bau::power::kilo>(1.);
     BOOST_TEST(scalar_1.value() == 1.);
     BOOST_TEST(scalar_1.value<bau::unit::length::Yards>() == 1760000.0);
-    // BOOST_TEST(scalar_1.value<bau::unit::length::Yards, bau::power::kilo>() == 1760.0);  // For some reason it is not working in boost.test
+    constexpr auto scalar_kilo_yards = scalar_1.value<bau::unit::length::Yards, bau::power::kilo>();
+    BOOST_TEST(scalar_kilo_yards == 1760.0);
     BOOST_TEST(scalar_1.value<bau::unit::length::Meters>() == scalar_1.value_si());
     BOOST_CHECK(scalar_1.name_unit() == bau::unit::length::Miles<>::name);
     BOOST_CHECK(scalar_1.symbol_unit() == bau::unit::length::Miles<>::symbol);
@@ -152,7 +153,8 @@ BOOST_AUTO_TEST_CASE(test_scalar, *utf::tolerance(tol))
     constexpr auto scalar_4 = bau::Scalar<bau::unit::weight::Grams, bau::power::kilo>(1.);
     BOOST_TEST(scalar_4.value() == 1.);
     BOOST_TEST(scalar_4.value<bau::unit::weight::Pounds>() == 2.20462);
-    // BOOST_TEST(scalar_4.value<bau::unit::weight::Grams, bau::power::kilo>() == scalar_4.value_si()); // For some reason it is not working in boost.test
+    constexpr auto scalar_kilo_grams = scalar_4.value<bau::unit::weight::Grams, bau::power::kilo>();
+    BOOST_TEST(scalar_kilo_grams == scalar_4.value_si());
     BOOST_CHECK(scalar_4.name_unit() == bau::unit::weight::Grams<>::name);
     BOOST_CHECK(scalar_4.symbol_unit() == bau::unit::weight::Grams<>::symbol);
     BOOST_CHECK(scalar_4.name_unit_type() == bau::unit::Weight::name);
@@ -168,17 +170,31 @@ BOOST_AUTO_TEST_CASE(test_arithmetic_operators, *utf::tolerance(tol))
 
     constexpr auto kg_res = k + p;
     constexpr auto pounds_res = p + k;
-
     BOOST_TEST(kg_res.value<bau::unit::weight::Pounds>() == pounds_res.value());
 
     constexpr auto kg_res_value = pounds_res.value<bau::unit::weight::Grams, bau::power::kilo>();
     BOOST_TEST(kg_res.value() == kg_res_value);
 
-    constexpr auto kg_res_m = k - p;
-    constexpr auto pounds_res_m = p - k;
-
-    BOOST_TEST(kg_res_m.value<bau::unit::weight::Pounds>() == -pounds_res_m.value());
+    constexpr auto kg_res_m = k - (-p);
+    constexpr auto pounds_res_m = p - (-k);
+    BOOST_TEST(kg_res_m.value<bau::unit::weight::Pounds>() == pounds_res_m.value());
 
     constexpr auto kg_res_m_value = pounds_res_m.value<bau::unit::weight::Grams, bau::power::kilo>();
-    BOOST_TEST(kg_res_m.value() == -kg_res_m_value);
+    BOOST_TEST(kg_res_m.value() == kg_res_m_value);
+
+    constexpr auto k3 = 3 * k;
+    constexpr auto k3_2 = k * 3;
+    BOOST_TEST(k3.value() == k3_2.value());
+
+    constexpr auto k1_5 = k3 / 2.;
+    constexpr auto k1_5_2 = k3_2 / 2.;
+    BOOST_TEST(k1_5.value() == k1_5_2.value());
+}
+
+BOOST_AUTO_TEST_CASE(test_comparison_operators)
+{
+    constexpr auto k = bau::Scalar<bau::unit::weight::Grams, bau::power::kilo>(1.);
+    constexpr auto k2 = bau::Scalar<bau::unit::weight::Grams, bau::power::kilo>(2.);
+    BOOST_CHECK(k < k2);
+    BOOST_CHECK(k2 > k);
 }

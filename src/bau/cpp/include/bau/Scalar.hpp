@@ -72,18 +72,61 @@ private:
     const double _value_si {};
 };
 
+template <typename T1, typename T2>
+concept SameUnitType = requires {
+    requires std::same_as<typename std::remove_cvref_t<T1>::unit_type, typename std::remove_cvref_t<T2>::unit_type>;
+};
+
+template <typename ScalarT>
+constexpr ScalarT operator-(const ScalarT& scalar)
+{
+    return ScalarT(-scalar.value());
+}
+
+template <typename ScalarT>
+constexpr ScalarT operator*(const ScalarT& scalar, double value)
+{
+    return ScalarT(scalar.value() * value);
+}
+
+template <typename ScalarT>
+constexpr ScalarT operator*(double value, const ScalarT& scalar)
+{
+    return scalar * value;
+}
+
+template <typename ScalarT>
+constexpr ScalarT operator/(const ScalarT& scalar, double value)
+{
+    return ScalarT(scalar.value() / value);
+}
+
 template <typename ScalarT1, typename ScalarT2>
+    requires SameUnitType<ScalarT1, ScalarT2>
 constexpr ScalarT1 operator+(const ScalarT1& scalar_1, const ScalarT2& scalar_2)
 {
-    static_assert(std::same_as<typename ScalarT1::unit_type, typename ScalarT2::unit_type>, "This operation should be done using the same unit_type.");
     return ScalarT1(ScalarT1::value_type::convert_from_si(scalar_1.value_si() + scalar_2.value_si()));
 }
 
 template <typename ScalarT1, typename ScalarT2>
+    requires SameUnitType<ScalarT1, ScalarT2>
 constexpr ScalarT1 operator-(const ScalarT1& scalar_1, const ScalarT2& scalar_2)
 {
-    static_assert(std::same_as<typename ScalarT1::unit_type, typename ScalarT2::unit_type>, "This operation should be done using the same unit_type.");
     return ScalarT1(ScalarT1::value_type::convert_from_si(scalar_1.value_si() - scalar_2.value_si()));
+}
+
+template <typename ScalarT1, typename ScalarT2>
+    requires SameUnitType<ScalarT1, ScalarT2>
+constexpr bool operator<(const ScalarT1& scalar_1, const ScalarT2& scalar_2)
+{
+    return scalar_1.value_si() < scalar_2.value_si();
+}
+
+template <typename ScalarT1, typename ScalarT2>
+    requires SameUnitType<ScalarT1, ScalarT2>
+constexpr bool operator>(const ScalarT1& scalar_1, const ScalarT2& scalar_2)
+{
+    return scalar_1.value_si() > scalar_2.value_si();
 }
 
 // template <template <typename> typename UnitTrait, power::PowerTraitT PowerTrait>
